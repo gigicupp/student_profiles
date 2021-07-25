@@ -1,12 +1,16 @@
-import React from 'react'
+import React from 'react';
 import './StudentCard.css';
+import useInputHooks from '../hooks/useInputHooks';
+import { v4 as uuidv4 } from 'uuid';
 
-function StudentCard({ st, handleClick }) {
+function StudentCard({ st, handleClick, addTags }) {
   const calculateAvg = (arr) => {
     let nums = arr.map(str => parseFloat(str))
     let total = nums.reduce((val, acc) => Number(val) + acc);
     return total / arr.length;
   }
+  //add a tag
+  const [tag, setTag, reset] = useInputHooks('');
 
   return (
     <div className='StudentCard'>
@@ -22,19 +26,25 @@ function StudentCard({ st, handleClick }) {
         <div>
           {st.expanded &&
             <ul className='StudentCard-scores'>
-              {st.grades.map((gr, i) => <li key={i}>{`Test ${i + 1}: ${gr}%`}</li>)}
+              {st.grades.map((gr, i) => <li key={uuidv4()}>{`Test ${i + 1}: ${gr}%`}</li>)}
             </ul>
           }
         </div>
         <div className='StudentCard-tags'>
           {st.tags.length
-            ? st.tags.map((tag, i) => <button key={i}>{tag}</button>)
+            ? st.tags.map((tag) => <button key={uuidv4()}>{tag}</button>)
             : null
           }
         </div>
-        <div className='StudentCard-add-tags'>
-          <input type='text' placeholder='Add a tag' />
-        </div>
+        <form className='StudentCard-add-tags'
+          onSubmit={(e) => {
+            e.preventDefault();
+            addTags(tag, st.id);
+            reset();
+          }}
+        >
+          <input type='text' placeholder='Add a tag' onChange={setTag} value={tag}/>
+        </form>
       </div>
       <div className='StudentCard-expand' onClick={handleClick}>
         <button id={st.id}>{st.expanded ? '-' : '+'}</button>
