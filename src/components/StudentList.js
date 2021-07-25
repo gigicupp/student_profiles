@@ -11,7 +11,10 @@ function StudentList() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`https://api.hatchways.io/assessment/students`)
-      setStudents(result.data.students);
+      let updatedResult = result.data.students.map(student => {
+        return {...student, expanded: false}
+      })
+      setStudents(updatedResult);
     };
     fetchData();
   }, [])
@@ -26,10 +29,24 @@ function StudentList() {
     setResults(results)
   }, [searchTerm])
 
+  //expanded
+  const handleClick = (e) => {
+    e.preventDefault();
+    let clickedId = e.target.id;
+    let updatedStudents = students.map(student => {
+      if(student.id === clickedId) {
+        return {...student, expanded: !student.expanded}
+      } else {
+        return student
+      }
+    })
+    setStudents(updatedStudents)
+  }
+
   return (
     <div className='StudentList'>
       <StudentSearch setSearchTerm={setSearchTerm} searchTerm={searchTerm}/>
-      <StudentProfile students={!result.length ? students : result} />
+      <StudentProfile students={!result.length ? students : result} handleClick={handleClick}/>
     </div>
   )
 }
