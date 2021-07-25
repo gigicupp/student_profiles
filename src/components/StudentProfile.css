@@ -1,55 +1,10 @@
 .StudentProfile {
     display: flex;
     flex-direction: row;
-    height: 200px;
+    max-height: 100%;
     justify-content: flex-start;
     align-items: center;
     padding: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.StudentProfile-img {
-  width: 20%;
-  height: 50%;
-  border: 2px solid rgba(0, 0, 0, 0.514);
-  border-radius: 50%;
-  contain: content;
-}
-
-.StudentProfile-img img {
-  width: 100%;
-  height: 100%;
-}
-
-.StudentProfile-info {
-  width: 65%;
-  padding: 1rem;
-  height: 80%;
-}
-
-.StudentProfile-info h3 {
-  text-transform: uppercase;
-  letter-spacing: 0.25rem;
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: black;
-}
-
-.StudentProfile-info p {
-  line-height: 0.5rem;
-}
-
-.StudentProfile button {
-  background-color: Transparent;
-  background-repeat:no-repeat;
-  border: none;
-  cursor:pointer;
-  overflow: hidden;
-  outline:none;
-  color: rgba(0, 0, 0, 0.3);
-  font-size: xx-large;
-}
-
-.StudentProfile-scores {
-  list-style-type: none;
-}

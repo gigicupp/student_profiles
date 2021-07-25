@@ -1,0 +1,52 @@
+.StudentCard {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: flex-start;
+  max-height: 100%;
+}
+
+.StudentCard-img {
+  border: 2px solid rgba(0, 0, 0, 0.514);
+  border-radius: 50%;
+  contain: content;
+  margin-top: 2rem;
+}
+
+.StudentCard-img img {
+  height: 100px;
+}
+
+.StudentCard-info {
+  width: 70%;
+  margin-left: 2rem;
+}
+
+.StudentCard button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: xx-large;
+  margin-top: 1rem;
+}
+
+.StudentCard-info h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  color: black;
+}
+
+.StudentCard-info p {
+  line-height: 0.5rem;
+}
+
+.StudentCard-scores {
+  list-style-type: none;
+} 
