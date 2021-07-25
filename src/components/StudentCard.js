@@ -1,7 +1,7 @@
 import React from 'react'
 import './StudentCard.css';
 
-function StudentCard({ st, id, isExpanded, handleClick }) {
+function StudentCard({ st, handleClick }) {
   const calculateAvg = (arr) => {
     let nums = arr.map(str => parseFloat(str))
     let total = nums.reduce((val, acc) => Number(val) + acc);
@@ -20,11 +20,10 @@ function StudentCard({ st, id, isExpanded, handleClick }) {
         <p>Skill: {st.skill}</p>
         <p>{`${calculateAvg(st.grades)}%`}</p>
         <div>
-          {isExpanded.expanded && st.id === id
-            ? <ul className='StudentCard-scores'>
-                {st.grades.map((gr, i) => <li key={i}>{`Test ${i + 1}: ${gr}%`}</li>)}
-              </ul>
-            : null
+          {st.expanded &&
+            <ul className='StudentCard-scores'>
+              {st.grades.map((gr, i) => <li key={i}>{`Test ${i + 1}: ${gr}%`}</li>)}
+            </ul>
           }
         </div>
       </div>
