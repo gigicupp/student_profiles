@@ -1,0 +1,12 @@
+.StudentSearch input{
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid grey;
+  padding: 0.5rem;
+}
+
+.StudentSearch {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+}
