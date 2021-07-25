@@ -5,12 +5,16 @@
   padding: 0.5rem;
 }
 
+input:focus {
+  outline: none;
+}
+
 .StudentSearch {
   position: sticky;
   z-index: 1;
   top: 0;
 }
 
-.StudentSearch input:hover {
+input:hover {
   border-color: blueviolet;
 }

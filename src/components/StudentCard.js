@@ -26,9 +26,18 @@ function StudentCard({ st, handleClick }) {
             </ul>
           }
         </div>
+        <div className='StudentCard-tags'>
+          {st.tags.length
+            ? st.tags.map((tag, i) => <button key={i}>{tag}</button>)
+            : null
+          }
+        </div>
+        <div className='StudentCard-add-tags'>
+          <input type='text' placeholder='Add a tag' />
+        </div>
       </div>
-      <div onClick={handleClick}>
-        <button id={st.id}>+</button>
+      <div className='StudentCard-expand' onClick={handleClick}>
+        <button id={st.id}>{st.expanded ? '-' : '+'}</button>
       </div>
     </div>
   )

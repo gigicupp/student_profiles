@@ -12,7 +12,7 @@ function StudentList() {
     const fetchData = async () => {
       const result = await axios.get(`https://api.hatchways.io/assessment/students`)
       let updatedResult = result.data.students.map(student => {
-        return {...student, expanded: false}
+        return {...student, expanded: false, tags: ['tag1']}
       })
       setStudents(updatedResult);
     };
@@ -29,7 +29,7 @@ function StudentList() {
     setResults(results)
   }, [searchTerm])
 
-  //expanded
+  //expand the score
   const handleClick = (e) => {
     e.preventDefault();
     let clickedId = e.target.id;
@@ -42,6 +42,9 @@ function StudentList() {
     })
     setStudents(updatedStudents)
   }
+
+  //add a tag
+  const [tag, setTag] = useInputHooks('');
 
   return (
     <div className='StudentList'>
