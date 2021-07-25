@@ -1,5 +1,7 @@
 import React from 'react';
-import './StudentProfile.css'
+import useToggleHooks from '../hooks/useToggleHooks';
+import StudentCard from './StudentCard'
+import './StudentProfile.css';
 
 function StudentProfile({ students }) {
   const calculateAvg = (arr) => {
@@ -8,9 +10,12 @@ function StudentProfile({ students }) {
     return total / arr.length;
   }
 
+   //expand student detail
+   const [isExpanded, setIsExpanded] = useToggleHooks(false)
+
   return (
-    students.map((st, i)=> {
-      return <div key={st.id} className='StudentProfile' >
+    students.map((st)=> {
+      return <div key={st.id} id={st.id} className='StudentProfile'>
         <div className='StudentProfile-img'>
           <img src={st.pic} alt={`pic of ${st.firstName} ${st.lastName}`} />
         </div>
@@ -20,7 +25,14 @@ function StudentProfile({ students }) {
           <p>Company: {st.company}</p>
           <p>Skill: {st.skill}</p>
           <p>{`${calculateAvg(st.grades)}%`}</p>
+          {isExpanded 
+            ? <ul className='StudentProfile-scores'>
+                {st.grades.map((gr,i) => <li>{`Test ${i + 1}: ${gr}%`}</li>)}
+              </ul>
+            : null
+          }
         </div>
+        <button onClick={setIsExpanded}>+</button>
       </div>
     })
   )

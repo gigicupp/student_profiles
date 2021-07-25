@@ -24,6 +24,7 @@
 .StudentProfile-info {
   width: 65%;
   padding: 1rem;
+  height: 80%;
 }
 
 .StudentProfile-info h3 {
@@ -36,4 +37,19 @@
 
 .StudentProfile-info p {
   line-height: 0.5rem;
+}
+
+.StudentProfile button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: xx-large;
+}
+
+.StudentProfile-scores {
+  list-style-type: none;
 }

@@ -10,3 +10,7 @@
   z-index: 1;
   top: 0;
 }
+
+.StudentSearch input:hover {
+  border-color: blueviolet;
+}

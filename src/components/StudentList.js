@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import StudentProfile from './StudentProfile';
 import StudentSearch from './StudentSearch';
-import './StudentList.css'
-import useInputHooks from '../hooks.js/useInputHooks'
+import './StudentList.css';
+import useInputHooks from '../hooks/useInputHooks';
 
 function StudentList() {
   //grab students from the API
