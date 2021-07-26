@@ -5,6 +5,7 @@ import StudentSearch from './StudentSearch';
 import StudentTagSearch from './StudentTagSearch';
 import './StudentList.css';
 import useInputHooks from '../hooks/useInputHooks';
+import { getUnique, displayStudents } from '../utils/helpers';
 
 function StudentList() {
   //grab students from the API
@@ -13,7 +14,7 @@ function StudentList() {
     const fetchData = async () => {
       const result = await axios.get(`https://api.hatchways.io/assessment/students`)
       let updatedResult = result.data.students.map(student => {
-        return {...student, expanded: false, tags: []}
+        return { ...student, expanded: false, tags: [] }
       })
       setStudents(updatedResult);
     };
@@ -24,7 +25,7 @@ function StudentList() {
   const [searchTerm, setSearchTerm] = useInputHooks('');
   const [result, setResults] = useState([]);
   useEffect(() => {
-    const results = students.filter(person => 
+    const results = students.filter(person =>
       `${person.firstName} ${person.lastName}`.toLowerCase().includes(`${searchTerm}`.toLowerCase())
     )
     setResults(results)
@@ -35,8 +36,8 @@ function StudentList() {
     e.preventDefault();
     let clickedId = e.target.id;
     let updatedStudents = students.map(student => {
-      if(student.id === clickedId) {
-        return {...student, expanded: !student.expanded}
+      if (student.id === clickedId) {
+        return { ...student, expanded: !student.expanded }
       } else {
         return student
       }
@@ -47,25 +48,42 @@ function StudentList() {
   //add a tag
   const addTags = (tag, id) => {
     let updatedStudents = students.map(student => {
-      if(student.id === id) {
-        return {...student, tags:[...student.tags, tag]}
+      if (student.id === id) {
+        return { ...student, tags: [...student.tags, tag] }
       } else {
         return student;
       }
     })
     setStudents(updatedStudents)
   }
-  
+
+  //search for tags
+  const [searchTag, setSearchTag] = useInputHooks('');
+  const [tagResult, setTagResult] = useState([]);
+  useEffect(() => {
+    const results = students.filter(person =>
+      `${person.tags}`.toLowerCase().includes(`${searchTag}`.toLowerCase())
+    )
+    console.log('the tags', results)
+    setTagResult(results)
+  }, [searchTag])
 
   return (
     <div className='StudentList'>
-      <StudentSearch 
-        setSearchTerm={setSearchTerm} 
+      <StudentSearch
+        setSearchTerm={setSearchTerm}
         searchTerm={searchTerm}
       />
-      <StudentTagSearch />
-      <StudentProfile 
-        students={!result.length ? students : result} 
+      <StudentTagSearch
+        setSearchTag={setSearchTag}
+        searchTag={searchTag}
+      />
+      <StudentProfile
+        students={
+          !result.length && !tagResult.length
+            ? students
+            : displayStudents(result, tagResult, searchTerm, searchTag)
+        }
         handleClick={handleClick}
         addTags={addTags}
       />
