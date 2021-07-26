@@ -64,7 +64,6 @@ function StudentList() {
     const results = students.filter(person =>
       `${person.tags}`.toLowerCase().includes(`${searchTag}`.toLowerCase())
     )
-    console.log('the tags', results)
     setTagResult(results)
   }, [searchTag])
 
