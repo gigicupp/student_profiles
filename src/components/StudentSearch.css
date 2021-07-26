@@ -3,16 +3,11 @@
   border: none;
   border-bottom: 1px solid grey;
   padding: 0.5rem;
+  font-family: inherit;
 }
 
 input:focus {
   outline: none;
-}
-
-.StudentSearch {
-  position: sticky;
-  z-index: 1;
-  top: 0;
 }
 
 input:hover {

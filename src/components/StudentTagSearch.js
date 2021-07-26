@@ -1,17 +1,16 @@
 import React from 'react'
 import './StudentSearch.css'
 
-export default function StudentSearch({ searchTerm, setSearchTerm }) {
-
+export default function StudentTagSearch({ searchTag, setSearchTag }) {
   return (
     <form className='StudentSearch'
       onSubmit={(e) => e.preventDefault()}
     >
       <input 
         type='text'
-        placeholder='Search by name'
-        value={searchTerm}
-        onChange={setSearchTerm}
+        placeholder='Search by tag'
+        value={searchTag}
+        onChange={setSearchTag}
       />
     </form>
   )

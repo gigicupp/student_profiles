@@ -2,13 +2,9 @@ import React from 'react';
 import './StudentCard.css';
 import useInputHooks from '../hooks/useInputHooks';
 import { v4 as uuidv4 } from 'uuid';
+import { calculateAvg } from '../utils/helpers';
 
 function StudentCard({ st, handleClick, addTags }) {
-  const calculateAvg = (arr) => {
-    let nums = arr.map(str => parseFloat(str))
-    let total = nums.reduce((val, acc) => Number(val) + acc);
-    return total / arr.length;
-  }
   //add a tag
   const [tag, setTag, reset] = useInputHooks('');
 
